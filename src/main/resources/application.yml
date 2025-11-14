@@ -1,4 +1,62 @@
+server:
+  port: 8999
 spring:
   application:
     name: seamless-attendance
+  profiles:
+    active: dev
+  # 邮件配置
+  mail:
+    protocol: smtp
+    host: smtp.126.com
+    port: 465
+    # 邮箱账号
+    username: ${mail.username}
+    # 邮箱授权码
+    password: ${mail.password}
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+          ssl:
+            enable: true
+        debug: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${mysql.host}:${mysql.port}/seamless_attendance?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: ${mysql.username}
+    password: ${mysql.password}
+    hikari:
+      connection-timeout: 10000
+      validation-timeout: 3000
+      idle-timeout: 60000
+      login-timeout: 5
+      max-lifetime: 60000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      read-only: false
+  data:
+    redis:
+      database: 5
+      host: ${redis.host}
+      # redis端口（默认为6379）
+      port: ${redis.port}
+      # redis访问密码（默认为空）
+      password: ${redis.password}
+      # redis连接超时时间（单位毫秒）
+      timeout: 50000
 
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+      # 配置全局逻辑删除，status字段，0为启用，1为删停用
+      logic-delete-field: del
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+  mapper-locations: classpath:/com/gemini/labsense/mapper/**/*.xml

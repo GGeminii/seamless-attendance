@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .code {
+            border: 1px solid #ddd;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #f5f5f5;
+        }
+
+        .code-details {
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        /* 验证码样式 */
+        .verification-code {
+            text-align: center; /* 水平居中 */
+            margin: 30px 0; /* 上下留出空间 */
+        }
+
+        .verification-code span {
+            font-size: 36px; /* 放大字体 */
+            font-weight: bold; /* 加粗 */
+            letter-spacing: 8px; /* 字符间距 */
+            color: #2c3e50; /* 深色突出显示 */
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            border: 1px dashed #ddd;
+        }
+    </style>
+    <title>LabSense邮箱验证码</title>
+</head>
+<body>
+<div class="code">
+    <div class="code-header">
+        <h2><strong>LabSense邮箱验证码</strong></h2>
+    </div>
+    <div class="code-details">
+        <p>尊敬的用户，您好！</p>
+        <p style="text-indent: 2em">您的验证码为：</p>
+
+        <!-- 验证码放大居中 -->
+        <div class="verification-code">
+            <span th:text="${code}">111111</span>
+        </div>
+
+        <p style="text-indent: 2em">
+            【LanSense】一台设备正在LabSense中验证您的邮箱，请使用此验证码进行验证，如非本人操作请忽略。验证码5分钟内有效，请勿轻易泄露给其他人！
+        </p>
+    </div>
+</div>
+</body>
+</html>
